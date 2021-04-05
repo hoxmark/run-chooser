@@ -1,5 +1,5 @@
 # run-chooser
-a fun hackdays project to visualise and choose my next run. 
+a fun hackdays project to visualise and choose my next run. The code needs to be cleaned up a bit
 
 ## First it will load all runs
 ![all runs](runs.png)
