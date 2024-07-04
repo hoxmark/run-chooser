@@ -53,22 +53,15 @@ def workout_overview():
         {
             "id": idx,
             "date": route[0][3],
-            "distance": distance,
-            "elevation_gain": elevation,
+            "distance": round(distance / 1000, 2),  # Convert to km
+            "elevation_gain": round(elevation, 2),
+            "pace": round(calculate_pace(route), 2),
         }
         for idx, (route, distance, elevation) in enumerate(
             zip(routes, distances, elevations)
         )
     ]
     return render_template("workout_overview.html", workout_list=workout_list)
-
-
-@app.route("/workout_calendar")
-def workout_calendar():
-    directory = "workouts/"
-    routes = import_gpx_files(directory)
-    workout_dates = [route[0][3].date() for route in routes]
-    return render_template("workout_calendar.html", workout_dates=workout_dates)
 
 
 @app.route("/workout/<int:workout_id>")
@@ -91,7 +84,21 @@ def single_workout(workout_id):
 def all_runs():
     directory = "workouts/"
     routes = import_gpx_files(directory)
-    return render_template("all_runs.html", routes=routes)
+    distances, elevations = calculate_distances_and_elevation(routes)
+    all_run_data = [
+        {
+            "id": idx,
+            "date": route[0][3],
+            "distance": round(distance / 1000, 2),  # Convert to km
+            "elevation_gain": round(elevation, 2),
+            "pace": round(calculate_pace(route), 2),
+            "route": route,
+        }
+        for idx, (route, distance, elevation) in enumerate(
+            zip(routes, distances, elevations)
+        )
+    ]
+    return render_template("all_runs.html", all_run_data=all_run_data)
 
 
 if __name__ == "__main__":

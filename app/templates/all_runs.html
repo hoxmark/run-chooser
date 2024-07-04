@@ -2,22 +2,39 @@
 {% block title %}All Runs{% endblock %}
 {% block content %}
     <div class="container">
-        <h2>All Runs Mapped</h2>
+        <h2>All Runs</h2>
         <div id="map"></div>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Distance (km)</th>
+                <th>Elevation Gain (m)</th>
+                <th>Pace (min/km)</th>
+            </tr>
+            {% for run in all_run_data %}
+            <tr>
+                <td>{{ run.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ run.distance }}</td>
+                <td>{{ run.elevation_gain }}</td>
+                <td>{{ run.pace }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
     <script>
-        var map = L.map('map').setView([{{ routes[0][0][0] }}, {{ routes[0][0][1] }}], 13);
+        var map = L.map('map').setView([0, 0], 2);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 18,
         }).addTo(map);
-        
-        {% for route in routes %}
-            var latlngs = [
-                {% for point in route %}
-                [{{ point[0] }}, {{ point[1] }}],
-                {% endfor %}
-            ];
-            var polyline = L.polyline(latlngs, {color: 'blue', weight: 2.5, opacity: 1}).addTo(map);
+
+        {% for run in all_run_data %}
+        var latlngs{{ loop.index }} = [
+            {% for point in run.route %}
+            [{{ point[0] }}, {{ point[1] }}],
+            {% endfor %}
+        ];
+        var polyline{{ loop.index }} = L.polyline(latlngs{{ loop.index }}, {color: 'blue'}).addTo(map);
+        map.fitBounds(polyline{{ loop.index }}.getBounds());
         {% endfor %}
     </script>
 {% endblock %}

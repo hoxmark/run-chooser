@@ -68,7 +68,7 @@ The Running Routes Analysis Web App is a comprehensive tool for runners to track
     Open your web browser and navigate to \`http://127.0.0.1:5001\`.
 
 ## Project Structure
-\`\`\`
+```
 /your_project
 |-- app.py
 |-- templates
@@ -92,7 +92,7 @@ The Running Routes Analysis Web App is a comprehensive tool for runners to track
 |-- utils
 |   |-- __init__.py
 |   |-- gpx_utils.py
-\`\`\`
+```
 
 ## Usage
 - **Upload GPX files**: Place your GPX files in the \`workouts\` directory.

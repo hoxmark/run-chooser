@@ -3,9 +3,20 @@
 {% block content %}
     <div class="container">
         <h2>Workout on {{ route[0][3].strftime('%Y-%m-%d %H:%M:%S') }}</h2>
-        <p><strong>Distance:</strong> {{ distance }} km</p>
-        <p><strong>Elevation Gain:</strong> {{ elevation_gain }} m</p>
-        <p><strong>Average Pace:</strong> {{ pace }} min/km</p>
+        <table class="stats-table">
+            <tr>
+                <th>Distance (km)</th>
+                <td>{{ "%.2f"|format(distance) }}</td>
+            </tr>
+            <tr>
+                <th>Elevation Gain (m)</th>
+                <td>{{ "%.2f"|format(elevation_gain) }}</td>
+            </tr>
+            <tr>
+                <th>Average Pace (min/km)</th>
+                <td>{{ "%.2f"|format(pace) }}</td>
+            </tr>
+        </table>
         <div id="map"></div>
     </div>
     <script>
