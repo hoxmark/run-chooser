@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Workout Overview{% endblock %}
+{% block content %}
+    <div class="container">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Distance (km)</th>
+                <th>Elevation Gain (m)</th>
+                <th>Details</th>
+            </tr>
+            {% for workout in workout_list %}
+            <tr>
+                <td>{{ workout.date }}</td>
+                <td>{{ workout.distance }}</td>
+                <td>{{ workout.elevation_gain }}</td>
+                <td><a href="{{ url_for('single_workout', workout_id=workout.id) }}">View</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

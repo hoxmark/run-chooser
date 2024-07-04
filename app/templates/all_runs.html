@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}All Runs{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>All Runs Mapped</h2>
+        <div id="map"></div>
+    </div>
+    <script>
+        var map = L.map('map').setView([{{ routes[0][0][0] }}, {{ routes[0][0][1] }}], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+        
+        {% for route in routes %}
+            var latlngs = [
+                {% for point in route %}
+                [{{ point[0] }}, {{ point[1] }}],
+                {% endfor %}
+            ];
+            var polyline = L.polyline(latlngs, {color: 'blue', weight: 2.5, opacity: 1}).addTo(map);
+        {% endfor %}
+    </script>
+{% endblock %}

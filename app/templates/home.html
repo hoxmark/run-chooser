@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Welcome{% endblock %}
+{% block content %}
+    <div class="welcome-container">
+        <div class="welcome-banner">
+            <h1>Welcome to Running Routes Analysis</h1>
+            <p>Track, analyze, and improve your running workouts with ease.</p>
+            <a href="{{ url_for('workout_overview') }}" class="cta-button">Get Started</a>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/heatmap.png') }}" alt="Heatmap">
+                <h2>Heatmap</h2>
+                <p>Visualize your running routes with an interactive heatmap.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/metadata.png') }}" alt="Metadata">
+                <h2>Metadata</h2>
+                <p>Analyze detailed statistics of your workouts.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/overview.png') }}" alt="Workout Overview">
+                <h2>Workout Overview</h2>
+                <p>Get a comprehensive overview of all your workouts.</p>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='images/calendar.png') }}" alt="Calendar">
+                <h2>Workout Calendar</h2>
+                <p>Track your workouts over time with a calendar view.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

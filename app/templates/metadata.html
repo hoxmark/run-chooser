@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Run Metadata{% endblock %}
+{% block content %}
+    <div class="container">
+        <table>
+            <tr>
+                <th>Total Distance (km)</th>
+                <td>{{ total_distance }}</td>
+            </tr>
+            <tr>
+                <th>Average Pace (min/km)</th>
+                <td>{{ avg_pace }}</td>
+            </tr>
+            <tr>
+                <th>Total Elevation Gain (m)</th>
+                <td>{{ total_elevation_gain }}</td>
+            </tr>
+        </table>
+        <h2>Seasonal Analysis</h2>
+        <table>
+            <tr>
+                <th>Season</th>
+                <th>Total Distance (km)</th>
+                <th>Average Pace (min/km)</th>
+            </tr>
+            {% for season, data in season_data.items() %}
+            <tr>
+                <td>{{ season.capitalize() }}</td>
+                <td>{{ data.total_distance }}</td>
+                <td>{{ data.avg_pace }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
