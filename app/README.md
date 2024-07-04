@@ -77,7 +77,6 @@ The Running Routes Analysis Web App is a comprehensive tool for runners to track
 |   |-- heatmap.html
 |   |-- metadata.html
 |   |-- workout_overview.html
-|   |-- workout_calendar.html
 |   |-- single_workout.html
 |   |-- all_runs.html
 |-- static
